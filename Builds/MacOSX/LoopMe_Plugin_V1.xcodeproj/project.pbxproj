@@ -41,6 +41,7 @@
 		6E08AB2A9A85C7DE64D98776 /* include_juce_audio_plugin_client_AU_2.mm */ = {isa = PBXBuildFile; fileRef = 981F504F38BEC18AF924CA13; };
 		976D2FC4CD82580959EB7B1E /* include_juce_audio_plugin_client_utils.cpp */ = {isa = PBXBuildFile; fileRef = 18D895CD720F3609872B1681; };
 		9CD478FE03A7518B09452C18 /* include_juce_audio_basics.mm */ = {isa = PBXBuildFile; fileRef = 5CA2222B1A0AAB60CEC428B1; };
+		A684A263BC15F9E2A87BEEE8 /* BinaryData.cpp */ = {isa = PBXBuildFile; fileRef = 4A68195CD4806DAD7CC14BEE; };
 		A6D38488D0D458FEABA3F1F4 /* IOKit.framework */ = {isa = PBXBuildFile; fileRef = 4883361E2B9F5B54325E1294; };
 		AF0EE347159AFAD55C9CE4A3 /* DiscRecording.framework */ = {isa = PBXBuildFile; fileRef = 8CB4B22A94E551D1AE897723; };
 		B3DC844C7CD8F790B6109EDC /* Foundation.framework */ = {isa = PBXBuildFile; fileRef = 9480AC30EEB258CCBFB3AEC5; };
@@ -80,6 +81,8 @@
 		3C86766E01756A61A2A56643 /* Standalone Plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoopMe_Plugin_V1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41DB18749FEC3DFBB23BB3E5 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
 		4883361E2B9F5B54325E1294 /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		4A68195CD4806DAD7CC14BEE /* BinaryData.cpp */ /* BinaryData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../JuceLibraryCode/BinaryData.cpp; sourceTree = SOURCE_ROOT; };
+		4FE6CF7C800A67B997C234C2 /* plugin_bg.png */ /* plugin_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plugin_bg.png; path = ../../Resources/plugin_bg.png; sourceTree = SOURCE_ROOT; };
 		531D45AF6AB03B176A8C1EEB /* juce_audio_devices */ /* juce_audio_devices */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_devices; path = "~/Dev/JUCE/JUCE/modules/juce_audio_devices"; sourceTree = "<absolute>"; };
 		53B59DC8CA4CCA0E07B151DB /* include_juce_audio_devices.mm */ /* include_juce_audio_devices.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_devices.mm; path = ../../JuceLibraryCode/include_juce_audio_devices.mm; sourceTree = SOURCE_ROOT; };
 		5CA2222B1A0AAB60CEC428B1 /* include_juce_audio_basics.mm */ /* include_juce_audio_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_basics.mm; path = ../../JuceLibraryCode/include_juce_audio_basics.mm; sourceTree = SOURCE_ROOT; };
@@ -102,6 +105,7 @@
 		8CB4B22A94E551D1AE897723 /* DiscRecording.framework */ /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		8E6A2205EE953D7929C1B4B9 /* Info-VST3.plist */ /* Info-VST3.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3.plist"; path = "Info-VST3.plist"; sourceTree = SOURCE_ROOT; };
 		9480AC30EEB258CCBFB3AEC5 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		977FE044EB55FE06ABEFFB0E /* BinaryData.h */ /* BinaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = SOURCE_ROOT; };
 		98029844D588CFA097B3BAB4 /* Info-AU.plist */ /* Info-AU.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AU.plist"; path = "Info-AU.plist"; sourceTree = SOURCE_ROOT; };
 		981F504F38BEC18AF924CA13 /* include_juce_audio_plugin_client_AU_2.mm */ /* include_juce_audio_plugin_client_AU_2.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_AU_2.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm; sourceTree = SOURCE_ROOT; };
 		9B72AB418E4AA224BACFB81A /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -223,10 +227,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		26594E75F0F61025D8179500 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4FE6CF7C800A67B997C234C2,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2E9A17FF7FF8E5E48BE633A4 /* LoopMe_Plugin_V1 */ = {
 			isa = PBXGroup;
 			children = (
 				C763D9EE4D970C38E9098884,
+				26594E75F0F61025D8179500,
 			);
 			name = LoopMe_Plugin_V1;
 			sourceTree = "<group>";
@@ -258,6 +271,8 @@
 		799618A51CCD1F5EAF286623 /* JUCE Library Code */ = {
 			isa = PBXGroup;
 			children = (
+				4A68195CD4806DAD7CC14BEE,
+				977FE044EB55FE06ABEFFB0E,
 				5CA2222B1A0AAB60CEC428B1,
 				53B59DC8CA4CCA0E07B151DB,
 				B0BD9DBD37910A71A90A2DEC,
@@ -578,6 +593,7 @@
 			files = (
 				F88D46CA896AB05F70AC22B9,
 				F948B1AEDA1136F3B31EE529,
+				A684A263BC15F9E2A87BEEE8,
 				9CD478FE03A7518B09452C18,
 				D307DD5567C90219411F4311,
 				B70BF29DBCE130918762AAB4,
@@ -681,8 +697,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -690,9 +706,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -701,10 +717,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -854,8 +870,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -863,9 +879,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -874,10 +890,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -1011,8 +1027,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -1020,9 +1036,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -1031,10 +1047,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -1120,8 +1136,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -1129,9 +1145,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -1140,10 +1156,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -1230,8 +1246,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -1239,9 +1255,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -1250,10 +1266,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -1344,8 +1360,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -1353,9 +1369,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -1364,10 +1380,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -1459,8 +1475,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -1468,9 +1484,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -1479,10 +1495,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
@@ -1574,8 +1590,8 @@
 					"JucePlugin_ManufacturerEmail=\\\"\\\"",
 					"JucePlugin_ManufacturerCode=0x4d616e75",
 					"JucePlugin_PluginCode=0x5731706e",
-					"JucePlugin_IsSynth=0",
-					"JucePlugin_WantsMidiInput=0",
+					"JucePlugin_IsSynth=1",
+					"JucePlugin_WantsMidiInput=1",
 					"JucePlugin_ProducesMidiOutput=0",
 					"JucePlugin_IsMidiEffect=0",
 					"JucePlugin_EditorRequiresKeyboardFocus=0",
@@ -1583,9 +1599,9 @@
 					"JucePlugin_VersionCode=0x10000",
 					"JucePlugin_VersionString=\\\"1.0.0\\\"",
 					"JucePlugin_VSTUniqueID=JucePlugin_PluginCode",
-					"JucePlugin_VSTCategory=kPlugCategEffect",
-					"JucePlugin_Vst3Category=\\\"Fx\\\"",
-					"JucePlugin_AUMainType=\\'aufx\\'",
+					"JucePlugin_VSTCategory=kPlugCategSynth",
+					"JucePlugin_Vst3Category=\\\"Instrument|Synth\\\"",
+					"JucePlugin_AUMainType=\\'aumu\\'",
 					"JucePlugin_AUSubType=JucePlugin_PluginCode",
 					"JucePlugin_AUExportPrefix=LoopMe_Plugin_V1AU",
 					"JucePlugin_AUExportPrefixQuoted=\\\"LoopMe_Plugin_V1AU\\\"",
@@ -1594,10 +1610,10 @@
 					"JucePlugin_AAXIdentifier=com.yourcompany.LoopMe_Plugin_V1",
 					"JucePlugin_AAXManufacturerCode=JucePlugin_ManufacturerCode",
 					"JucePlugin_AAXProductId=JucePlugin_PluginCode",
-					"JucePlugin_AAXCategory=0",
+					"JucePlugin_AAXCategory=2048",
 					"JucePlugin_AAXDisableBypass=0",
 					"JucePlugin_AAXDisableMultiMono=0",
-					"JucePlugin_IAAType=0x61757278",
+					"JucePlugin_IAAType=0x61757269",
 					"JucePlugin_IAASubType=JucePlugin_PluginCode",
 					"JucePlugin_IAAName=\\\"yourcompany:\\ LoopMe_Plugin_V1\\\"",
 					"JucePlugin_VSTNumMidiInputs=16",
