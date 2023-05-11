@@ -5,6 +5,9 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="oX92sr" name="LoopMe_Plugin_V1">
     <GROUP id="{50664658-580C-336E-8C25-EF3B9BD49F70}" name="Source">
+      <FILE id="TuyIuK" name="EditorPositions.h" compile="0" resource="0"
+            file="Source/EditorPositions.h"/>
+      <FILE id="lJgDjF" name="LoopInfo.h" compile="0" resource="0" file="Source/LoopInfo.h"/>
       <FILE id="QyZUoX" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="oajd9Q" name="PluginProcessor.h" compile="0" resource="0"
