@@ -10,15 +10,20 @@
 
 #pragma once
 
+#include <JuceHeader.h>
+
 // Constants which determine the positions that things are drawn in the editor
 
 namespace loopme {
 namespace positions {
 
-constexpr int kNameTextX = 100;
-constexpr int kNameTextY = 100;
-constexpr int kNameTextW = 500;
-constexpr int kNameTextH = 300;
+constexpr int kPluginWidth = 800;
+constexpr int kPluginHeight = 600;
 
+const juce::Point<int> kNameLabelSize {150, 50};
+const juce::Point<int> kTempoLabelSize {50, 50};
+const juce::Point<int> kKeyLabelSize {50, 50};
+
+const juce::Rectangle<int> kLoopInfoAreaBounds {50, 50, 700, 200};
 }
 }

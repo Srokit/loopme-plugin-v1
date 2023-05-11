@@ -5,6 +5,14 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="oX92sr" name="LoopMe_Plugin_V1">
     <GROUP id="{50664658-580C-336E-8C25-EF3B9BD49F70}" name="Source">
+      <FILE id="n2e1eW" name="LoopmeLabelComponent.cpp" compile="1" resource="0"
+            file="Source/LoopmeLabelComponent.cpp"/>
+      <FILE id="mFpJpQ" name="LoopmeLabelComponent.h" compile="0" resource="0"
+            file="Source/LoopmeLabelComponent.h"/>
+      <FILE id="S1Gbtg" name="LoopInfoAreaComponent.cpp" compile="1" resource="0"
+            file="Source/LoopInfoAreaComponent.cpp"/>
+      <FILE id="QRPbNT" name="LoopInfoAreaComponent.h" compile="0" resource="0"
+            file="Source/LoopInfoAreaComponent.h"/>
       <FILE id="TuyIuK" name="EditorPositions.h" compile="0" resource="0"
             file="Source/EditorPositions.h"/>
       <FILE id="lJgDjF" name="LoopInfo.h" compile="0" resource="0" file="Source/LoopInfo.h"/>
