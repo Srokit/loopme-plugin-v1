@@ -9,7 +9,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-#include "EditorPositions.h"
+#include "configvals.h"
 
 //==============================================================================
 LoopMe_Plugin_V1AudioProcessorEditor::LoopMe_Plugin_V1AudioProcessorEditor (LoopMe_Plugin_V1AudioProcessor& p)
@@ -17,9 +17,9 @@ LoopMe_Plugin_V1AudioProcessorEditor::LoopMe_Plugin_V1AudioProcessorEditor (Loop
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (loopme::positions::kPluginWidth, loopme::positions::kPluginHeight);
+    setSize (lm::config::kPluginWidth, lm::config::kPluginHeight);
     
-    addAndMakeVisible(this->loopInfoAreaComponent);
+    addAndMakeVisible(this->_mainAreaComponent);
 }
 
 LoopMe_Plugin_V1AudioProcessorEditor::~LoopMe_Plugin_V1AudioProcessorEditor()
@@ -34,6 +34,6 @@ void LoopMe_Plugin_V1AudioProcessorEditor::paint (juce::Graphics& g)
 
 void LoopMe_Plugin_V1AudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    const auto& b = getBounds();
+    this->_mainAreaComponent.setBounds(b.getX() + lm::config::kMarginSize, b.getY() + lm::config::kMarginSize, b.getWidth() - lm::config::kMarginSize * 2, b.getHeight() - lm::config::kMarginSize * 2);
 }

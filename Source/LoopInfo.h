@@ -12,7 +12,7 @@
 
 #include <string>
 
-namespace loopme {
+namespace lm::data {
 
 struct LoopInfo {
     std::string name;
@@ -29,4 +29,4 @@ struct LoopInfo {
     LoopInfo(std::string name, std::string tempo, std::string key): name(name), tempo(tempo), key(key) {}
 };
 
-}
+} // namespace lm::data

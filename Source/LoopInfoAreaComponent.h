@@ -14,8 +14,9 @@
 
 #include "LoopInfo.h"
 #include "LoopmeLabelComponent.h"
+#include "FlexBoxComponent.h"
 
-namespace loopme::ui {
+namespace lm::ui {
 
 class LoopInfoAreaComponent: public juce::Component {
 public:
@@ -23,18 +24,41 @@ public:
 
     void resized() override;
     
-    void setInfo(const LoopInfo& i) { _loopInfo = i; }
+    void setInfo(const data::LoopInfo& i) { _loopInfo = i; }
+    
+    // Debug
+    void paint(juce::Graphics&) override;
 
 private:
     void attachChildren();
     void layoutChildren();
     
-    LoopInfo _loopInfo;
+    static constexpr int kVertFbWidth = 300;
+    static constexpr int kVertFbHeight = 150;
+
+    static constexpr int kLoopNameHeight = 70;
+    
+    static constexpr int kSpacerHeight = 10;
+    
+    static constexpr int kTempoAndKeyWidth = 50;
+    
+    static constexpr int calcTempoAndKeyH() { return kVertFbHeight - kLoopNameHeight - kSpacerHeight; }
+    
+    static std::string calcTempoAndKeyLabelStr(const std::string& tempo, const std::string& key) {
+        return tempo + '|' + key;
+    }
+    
+    data::LoopInfo _loopInfo;
     LoopmeLabelComponent _nameLabelComponent;
-    LoopmeLabelComponent _tempoLabelComponent;
-    LoopmeLabelComponent _keyLabelComponent;
+    LoopmeLabelComponent _tempoAndKeyLabelComponent;
+    
+    juce::Component _spacerComp;
+
+    FlexBoxComponent _containerFlexBoxComponent;
+    FlexBoxComponent _vertFlexBoxComponent;
+
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LoopInfoAreaComponent)
 };
 
-}
+} // namespace lm::ui

@@ -10,17 +10,13 @@
 
 #include "LoopInfoAreaComponent.h"
 
-namespace loopme {
-
-namespace ui {
+namespace lm::ui {
 
 LoopInfoAreaComponent::LoopInfoAreaComponent()
 : _loopInfo(),
-  _nameLabelComponent(this->_loopInfo.name, {100, 50}),
-  _tempoLabelComponent(this->_loopInfo.tempo, {50, 50}),
-  _keyLabelComponent(this->_loopInfo.key, {50, 50})
+  _nameLabelComponent(this->_loopInfo.name, 30, {kVertFbWidth, kLoopNameHeight}),
+  _tempoAndKeyLabelComponent(calcTempoAndKeyLabelStr(this->_loopInfo.tempo, this->_loopInfo.key), 15, {kVertFbWidth, calcTempoAndKeyH()})
 {
-    setSize(700, 150);
     attachChildren();
 }
 
@@ -29,24 +25,33 @@ void LoopInfoAreaComponent::resized() {
 }
 
 void LoopInfoAreaComponent::attachChildren() {
-    addAndMakeVisible(this->_nameLabelComponent);
-    addAndMakeVisible(this->_tempoLabelComponent);
-    addAndMakeVisible(this->_keyLabelComponent);
+    
+    this->_vertFlexBoxComponent.addAndMakeVisible(this->_nameLabelComponent);
+    this->_vertFlexBoxComponent.addAndMakeVisible(this->_spacerComp);
+    this->_vertFlexBoxComponent.addAndMakeVisible(this->_tempoAndKeyLabelComponent);
+    this->_containerFlexBoxComponent.addAndMakeVisible(this->_vertFlexBoxComponent);
+    addAndMakeVisible(this->_containerFlexBoxComponent);
 }
 
 void LoopInfoAreaComponent::layoutChildren() {
-    juce::FlexBox fb;
-    fb.items.add(this->_nameLabelComponent.makeFlexItem());
-    fb.items.add(this->_tempoLabelComponent.makeFlexItem());
-    fb.items.add(this->_keyLabelComponent.makeFlexItem());
-    fb.alignItems = juce::FlexBox::AlignItems::flexStart;
-    fb.alignContent = juce::FlexBox::AlignContent::flexStart;
-    fb.flexWrap = juce::FlexBox::Wrap::wrap;
-    fb.flexDirection = juce::FlexBox::Direction::row;
-    fb.justifyContent = juce::FlexBox::JustifyContent::spaceAround;
-    fb.performLayout(getBounds());
+    // Set sizes of all components
+    this->_containerFlexBoxComponent.setSize(getWidth(), getHeight());
+    this->_vertFlexBoxComponent.setSize(kVertFbWidth, kVertFbHeight);
+    this->_tempoAndKeyLabelComponent.setSize(kVertFbWidth, calcTempoAndKeyH());
+    this->_nameLabelComponent.setSize(kVertFbWidth, kLoopNameHeight);
+    this->_spacerComp.setSize(kVertFbWidth, kSpacerHeight);
+
+    // Set flexbox properties
+    this->_containerFlexBoxComponent.setFlexDirection(juce::FlexBox::Direction::row);
+    this->_containerFlexBoxComponent.setJustifyContent(juce::FlexBox::JustifyContent::flexStart);
+    this->_vertFlexBoxComponent.setFlexDirection(juce::FlexBox::Direction::column);
+    
+    // Perform recursive layout
+    this->_containerFlexBoxComponent.layout();
 }
 
+void LoopInfoAreaComponent::paint(juce::Graphics& g) {
+    g.fillAll(juce::Colours::yellow);
 }
 
-}
+} // namespace lm::ui

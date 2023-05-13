@@ -5,17 +5,40 @@
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
   <MAINGROUP id="oX92sr" name="LoopMe_Plugin_V1">
     <GROUP id="{50664658-580C-336E-8C25-EF3B9BD49F70}" name="Source">
-      <FILE id="n2e1eW" name="LoopmeLabelComponent.cpp" compile="1" resource="0"
-            file="Source/LoopmeLabelComponent.cpp"/>
-      <FILE id="mFpJpQ" name="LoopmeLabelComponent.h" compile="0" resource="0"
-            file="Source/LoopmeLabelComponent.h"/>
-      <FILE id="S1Gbtg" name="LoopInfoAreaComponent.cpp" compile="1" resource="0"
-            file="Source/LoopInfoAreaComponent.cpp"/>
-      <FILE id="QRPbNT" name="LoopInfoAreaComponent.h" compile="0" resource="0"
-            file="Source/LoopInfoAreaComponent.h"/>
-      <FILE id="TuyIuK" name="EditorPositions.h" compile="0" resource="0"
-            file="Source/EditorPositions.h"/>
-      <FILE id="lJgDjF" name="LoopInfo.h" compile="0" resource="0" file="Source/LoopInfo.h"/>
+      <GROUP id="{7D534C2E-D011-9A69-6CF0-537E1221E861}" name="lm">
+        <GROUP id="{29DE94FA-F6E4-355E-890C-B74AFFC26A9E}" name="wf">
+          <FILE id="YxPJiM" name="WaveformVisualizer.cpp" compile="1" resource="0"
+                file="Source/WaveformVisualizer.cpp"/>
+          <FILE id="et1f0I" name="WaveformVisualizer.h" compile="0" resource="0"
+                file="Source/WaveformVisualizer.h"/>
+        </GROUP>
+        <FILE id="j8DFX6" name="configvals.h" compile="0" resource="0" file="Source/configvals.h"/>
+        <GROUP id="{4AF9CC24-D247-4884-11BE-3DE3F7409D47}" name="data">
+          <FILE id="lJgDjF" name="LoopInfo.h" compile="0" resource="0" file="Source/LoopInfo.h"/>
+        </GROUP>
+        <GROUP id="{5C1A3B29-6E29-BB3C-BE69-19867B56ACD7}" name="ui">
+          <FILE id="fVMkcE" name="WaveformVisualizerComponent.cpp" compile="1"
+                resource="0" file="Source/WaveformVisualizerComponent.cpp"/>
+          <FILE id="fcBkm9" name="WaveformVisualizerComponent.h" compile="0"
+                resource="0" file="Source/WaveformVisualizerComponent.h"/>
+          <FILE id="T9vYBO" name="FlexBoxComponent.cpp" compile="1" resource="0"
+                file="Source/FlexBoxComponent.cpp"/>
+          <FILE id="R1p3tZ" name="FlexBoxComponent.h" compile="0" resource="0"
+                file="Source/FlexBoxComponent.h"/>
+          <FILE id="sVMAFt" name="MainAreaComponent.cpp" compile="1" resource="0"
+                file="Source/MainAreaComponent.cpp"/>
+          <FILE id="n2e1eW" name="LoopmeLabelComponent.cpp" compile="1" resource="0"
+                file="Source/LoopmeLabelComponent.cpp"/>
+          <FILE id="mFpJpQ" name="LoopmeLabelComponent.h" compile="0" resource="0"
+                file="Source/LoopmeLabelComponent.h"/>
+          <FILE id="S1Gbtg" name="LoopInfoAreaComponent.cpp" compile="1" resource="0"
+                file="Source/LoopInfoAreaComponent.cpp"/>
+          <FILE id="QRPbNT" name="LoopInfoAreaComponent.h" compile="0" resource="0"
+                file="Source/LoopInfoAreaComponent.h"/>
+          <FILE id="ePiWwk" name="MainAreaComponent.h" compile="0" resource="0"
+                file="Source/MainAreaComponent.h"/>
+        </GROUP>
+      </GROUP>
       <FILE id="QyZUoX" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="oajd9Q" name="PluginProcessor.h" compile="0" resource="0"

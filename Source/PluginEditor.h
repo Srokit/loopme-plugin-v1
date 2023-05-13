@@ -11,7 +11,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
-#include "LoopInfoAreaComponent.h"
+#include "MainAreaComponent.h"
 
 //==============================================================================
 /**
@@ -32,12 +32,7 @@ private:
     // access the processor object that created it.
     LoopMe_Plugin_V1AudioProcessor& audioProcessor;
 
-    // Holds loop info to display
-    loopme::LoopInfo loopInfo;
-
-    loopme::ui::LoopInfoAreaComponent loopInfoAreaComponent;
-
-    juce::Slider slider;
+    lm::ui::MainAreaComponent _mainAreaComponent;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LoopMe_Plugin_V1AudioProcessorEditor)
 };
