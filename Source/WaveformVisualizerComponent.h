@@ -28,7 +28,7 @@ private:
     /*
      * Configure these constants to change compoenent
      */
-    static constexpr int kFPS = 30;
+    static constexpr int kFPS = 60;
     static constexpr int kNumPoints = 100;
     static constexpr int kRectGapSize = 4;
     static constexpr int kRectWidth = 3;
@@ -36,7 +36,12 @@ private:
     // Space left above and below where actual rects are drawn
     static constexpr int kWfYBorderSize = 2;
     // Size of the gap running horizontally down the middle of wf
-    static constexpr int kWfMiddleGapSize = 2;
+    static constexpr int kWfMiddleGapSize = 4;
+    static constexpr int kWfBottomHalfXShift = 2;
+    
+    // Colourscheme of visualizer
+    juce::Colour _wfTopColor;
+    juce::Colour _wfBotColor;
     /*
      * END configure these constants to change component
      */
@@ -72,7 +77,8 @@ private:
             .movementFrequency = 10,
         },
     };
-
+    
+    void setColors();
     void initWfVisualizer();
     void drawWfRects(juce::Graphics&);
     void drawSingleWfRectAtIndexAndFacing(juce::Graphics&, int, bool);

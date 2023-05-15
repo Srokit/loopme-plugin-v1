@@ -27,7 +27,7 @@ void LoopmeLabelComponent::resized() {
 }
 
 void LoopmeLabelComponent::paint(juce::Graphics& g) {
-    g.fillAll(juce::Colours::red);
+//    g.fillAll(juce::Colours::red);
 }
 
 juce::FlexItem LoopmeLabelComponent::makeFlexItem() {

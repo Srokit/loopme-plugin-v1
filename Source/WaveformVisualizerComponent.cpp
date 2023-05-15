@@ -15,18 +15,25 @@
 namespace lm::ui {
 
 WaveformVisualizerComponent::WaveformVisualizerComponent() {
+    setOpaque(false);
+    setColors();
     initWfVisualizer();
     setFramesPerSecond(kFPS);
 }
 
 void WaveformVisualizerComponent::paint(juce::Graphics& g) {
-    g.fillAll(juce::Colours::black);
+    g.fillAll(juce::Colours::transparentBlack);
     drawWfRects(g);
 }
 
 void WaveformVisualizerComponent::update() {
     _visualizerAggregate.update();
     repaint();
+}
+
+void WaveformVisualizerComponent::setColors() {
+    _wfTopColor = juce::Colours::white;
+    _wfBotColor = juce::Colour::fromRGB(192, 192, 192);
 }
 
 void WaveformVisualizerComponent::initWfVisualizer() {
@@ -53,14 +60,17 @@ void WaveformVisualizerComponent::drawSingleWfRectAtIndexAndFacing(juce::Graphic
         int startY = getHeight() / 2 - kWfHeight / 2;
         int rectLeftX = startX + rectIndex * kRectXDelta;
         int rectTopY = startY + (kWfRectMaxHeightAllowed - rectHeight);
-        g.drawRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
+        g.setColour(_wfTopColor);
+        g.fillRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
     }
     else {
-        int startX = getWidth() / 2 - kWfWidth / 2;
+        int startX = getWidth() / 2 - kWfWidth / 2 + kWfBottomHalfXShift;
         int startY = getHeight() / 2 - kWfHeight / 2 + kWfRectMaxHeightAllowed + kWfMiddleGapSize;
         int rectLeftX = startX + rectIndex * kRectXDelta;
         int rectTopY = startY;
-        g.drawRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
+        g.setColour(_wfBotColor);
+        g.fillRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
+//        g.drawRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
     }
 }
 

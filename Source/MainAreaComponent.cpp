@@ -17,6 +17,7 @@ namespace lm::ui {
 
 MainAreaComponent::MainAreaComponent()
 {
+//    setOpaque(false);
     addAndMakeVisible(this->_loopInfoAreaComponent);
     addAndMakeVisible(this->_waveformVisComponent);
 }
@@ -24,12 +25,12 @@ MainAreaComponent::MainAreaComponent()
 void MainAreaComponent::resized()
 {
     const auto& b = getBounds();
-    this->_loopInfoAreaComponent.setSize(b.getWidth(), b.getHeight() / 5);
-    this->_waveformVisComponent.setBounds(0, b.getHeight() / 5, b.getWidth(), b.getHeight() * 4 / 5);
+    this->_loopInfoAreaComponent.setSize(b.getWidth(), kLoopInfoAreaHeight);
+    this->_waveformVisComponent.setBounds(0, kLoopInfoAreaHeight, b.getWidth(), kWaveformCompHeight);
 }
 
 void MainAreaComponent::paint(juce::Graphics& g) {
-    g.fillAll(juce::Colours::blue);
+//    g.fillAll(juce::Colours::blue);
 }
 
 } // namespace lm::ui

@@ -34,15 +34,15 @@ private:
     void layoutChildren();
     
     static constexpr int kVertFbWidth = 300;
-    static constexpr int kVertFbHeight = 150;
+    static constexpr int kVertFbHeight = 125;
 
     static constexpr int kLoopNameHeight = 70;
     
-    static constexpr int kSpacerHeight = 10;
+    static constexpr int kSpacerHeight = 0;
     
     static constexpr int kTempoAndKeyWidth = 50;
     
-    static constexpr int calcTempoAndKeyH() { return kVertFbHeight - kLoopNameHeight - kSpacerHeight; }
+    static constexpr int kTempoAndKeyH = 30;
     
     static std::string calcTempoAndKeyLabelStr(const std::string& tempo, const std::string& key) {
         return tempo + '|' + key;
