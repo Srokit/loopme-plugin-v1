@@ -18,12 +18,14 @@ namespace lm::ui {
 MainAreaComponent::MainAreaComponent()
 {
     addAndMakeVisible(this->_loopInfoAreaComponent);
+    addAndMakeVisible(this->_waveformVisComponent);
 }
 
 void MainAreaComponent::resized()
 {
     const auto& b = getBounds();
-    this->_loopInfoAreaComponent.setSize(b.getWidth(), b.getHeight());
+    this->_loopInfoAreaComponent.setSize(b.getWidth(), b.getHeight() / 5);
+    this->_waveformVisComponent.setBounds(0, b.getHeight() / 5, b.getWidth(), b.getHeight() * 4 / 5);
 }
 
 void MainAreaComponent::paint(juce::Graphics& g) {

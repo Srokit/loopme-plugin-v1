@@ -15,35 +15,53 @@
 namespace lm::ui {
 
 WaveformVisualizerComponent::WaveformVisualizerComponent() {
-    wf::WaveformVisualizerAttributes atts;
-    atts.minHeight = 10;
-    atts.maxHeight = 100;
-    atts.numPoints = 100;
-    atts.initWaveFrequency = 4;
-    atts.movementFrequency = 2;
-    _oscilator = std::make_unique<wf::WaveformVisualizer>(atts);
-    _numWfPoints = atts.numPoints;
-    setFramesPerSecond(FPS);
-    _oscilator->resume();
+    initWfVisualizer();
+    setFramesPerSecond(kFPS);
 }
 
 void WaveformVisualizerComponent::paint(juce::Graphics& g) {
     g.fillAll(juce::Colours::black);
-    g.setColour(juce::Colours::white);
-    int xDelta = 2;
-    int startX = getWidth() / 2 - 100;
-    int startY = getHeight() / 2;
-    for (int i = 0; i < _numWfPoints; i++) {
-        // Draw line with height determined by ocilator. Then move right by xDelta.
-        int height = _oscilator->getHeight(i);
-        g.drawLine(startX + i * xDelta, startY, startX + i * xDelta, startY + height);
-        g.drawLine(startX + i * xDelta + 1, startY - 1, startX + i * xDelta + 1, startY - height - 1);
-    }
+    drawWfRects(g);
 }
 
 void WaveformVisualizerComponent::update() {
-    _oscilator->update();
+    _visualizerAggregate.update();
     repaint();
+}
+
+void WaveformVisualizerComponent::initWfVisualizer() {
+    _visualizerAggregate.setNumPoints(kNumPoints);
+    for (const auto& att : kWfAtts) {
+        _visualizerAggregate.addVisualizerWithAttributes(att);
+    }
+    _visualizerAggregate.resume();
+}
+
+void WaveformVisualizerComponent::drawWfRects(juce::Graphics& g) {
+    g.setColour(juce::Colours::white);
+    for (int rectIndex = 0; rectIndex < _visualizerAggregate.getNumPoints(); rectIndex++) {
+        drawSingleWfRectAtIndexAndFacing(g, rectIndex, true);
+        drawSingleWfRectAtIndexAndFacing(g, rectIndex, false);
+    }
+}
+
+void WaveformVisualizerComponent::drawSingleWfRectAtIndexAndFacing(juce::Graphics& g, int rectIndex, bool facingUp) {
+    int rectHeight = _visualizerAggregate.getHeightAtIndex(rectIndex);
+
+    if (facingUp) {
+        int startX = getWidth() / 2 - kWfWidth / 2;
+        int startY = getHeight() / 2 - kWfHeight / 2;
+        int rectLeftX = startX + rectIndex * kRectXDelta;
+        int rectTopY = startY + (kWfRectMaxHeightAllowed - rectHeight);
+        g.drawRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
+    }
+    else {
+        int startX = getWidth() / 2 - kWfWidth / 2;
+        int startY = getHeight() / 2 - kWfHeight / 2 + kWfRectMaxHeightAllowed + kWfMiddleGapSize;
+        int rectLeftX = startX + rectIndex * kRectXDelta;
+        int rectTopY = startY;
+        g.drawRect(rectLeftX, rectTopY, kRectWidth, rectHeight);
+    }
 }
 
 } // namespace lm::ui

@@ -26,7 +26,7 @@ class WaveformVisualizer{
 public:
     WaveformVisualizer(const WaveformVisualizerAttributes& attributes);
     void update();
-    int getHeight(int index);
+    int getHeight(int index) const;
     void pause();
     void resume();
 private:

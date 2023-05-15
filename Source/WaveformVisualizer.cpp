@@ -51,12 +51,12 @@ void WaveformVisualizer::update() {
         float initPhase = static_cast<float>(i) / static_cast<float>(_numPoints) * 2.0f * M_PI * _initWaveFrequency;
         float sinVal = std::sin(2.0f * M_PI * _movementFrequency * elapsedS + initPhase);
         float sinValShifted = (sinVal + 1.0f) / 2.0f;
-        int height = _minHeight + std::abs(static_cast<int>(static_cast<float>(heightAmp()) * sinValShifted));
+        int height = _minHeight + static_cast<int>(static_cast<float>(heightAmp()) * sinValShifted);
         _heights[i] = height;
     }
 }
 
-int WaveformVisualizer::getHeight(int index) {
+int WaveformVisualizer::getHeight(int index) const {
     return _heights[index];
 }
 
@@ -74,7 +74,8 @@ void WaveformVisualizer::initHeights() {
     _heights.reserve(_numPoints);
     for (int i = 0; i < _numPoints; i++) {
         float sinVal = std::sin(static_cast<float>(i) / _numPoints * 2.0f * M_PI * _initWaveFrequency);
-        _heights.push_back(_minHeight + heightAmp() * sinVal);
+        float sinValShifted = (sinVal + 1.0f) / 2.0f;
+        _heights.push_back(_minHeight + heightAmp() * sinValShifted);
     }
 }
 

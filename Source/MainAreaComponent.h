@@ -13,6 +13,7 @@
 #include <JuceHeader.h>
 
 #include "LoopInfoAreaComponent.h"
+#include "WaveformVisualizerComponent.h"
 
 //==============================================================================
 /*
@@ -32,6 +33,8 @@ public:
 private:
     
     LoopInfoAreaComponent _loopInfoAreaComponent;
+    WaveformVisualizerComponent _waveformVisComponent;
+    
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainAreaComponent)
 };

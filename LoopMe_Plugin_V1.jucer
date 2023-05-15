@@ -11,6 +11,10 @@
                 file="Source/WaveformVisualizer.cpp"/>
           <FILE id="et1f0I" name="WaveformVisualizer.h" compile="0" resource="0"
                 file="Source/WaveformVisualizer.h"/>
+          <FILE id="Qbp7dH" name="WaveformVisualizerAggregate.cpp" compile="1"
+                resource="0" file="Source/WaveformVisualizerAggregate.cpp"/>
+          <FILE id="OfVCEq" name="WaveformVisualizerAggregate.h" compile="0"
+                resource="0" file="Source/WaveformVisualizerAggregate.h"/>
         </GROUP>
         <FILE id="j8DFX6" name="configvals.h" compile="0" resource="0" file="Source/configvals.h"/>
         <GROUP id="{4AF9CC24-D247-4884-11BE-3DE3F7409D47}" name="data">
