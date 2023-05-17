@@ -10,6 +10,8 @@
 
 #include "requests.h"
 
+#include <fstream>
+
 #include <JuceHeader.h>
 
 #include "httplib.h"
@@ -26,14 +28,13 @@ void curlLoopFromUrl(const std::string& url) {
 }
 
 std::string getLoopInfoFromBackend() {
-    httplib::Client cli(config::kBackendUrlBase);
-    auto res = cli.Get("/loop");
-    if (res && res->status == 200) {
-        nlohmann::json j = nlohmann::json::parse(res->body);
-        return j["url"].get<std::string>();
-    } else {
-        return "https://loopme-comb-loops.s3.us-west-1.amazonaws.com/LonelyTrkSymphony_142_Gm.mp3";
-    }
+    std::string url = config::kBackendUrlBase + "loop";
+    std::string cmd = "curl " + url + " -o /Users/srok/json.txt";
+    system(cmd.c_str());
+    
+    std::ifstream f("/Users/srok/json.txt");
+    nlohmann::json j = nlohmann::json::parse(f);
+    return j["url"].get<std::string>();
 }
 
 } // namespace lm::data
