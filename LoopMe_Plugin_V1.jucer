@@ -52,6 +52,8 @@
       <FILE id="s0XtNx" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
     <GROUP id="{77E16481-4184-6B24-0442-6801F4EE0B29}" name="Resources">
+      <FILE id="qkqYHn" name="play_button_100.png" compile="0" resource="1"
+            file="../PluginResources/play_button_100.png"/>
       <FILE id="d3yjQ4" name="plugin_bg.png" compile="0" resource="1" file="Resources/plugin_bg.png"/>
     </GROUP>
   </MAINGROUP>

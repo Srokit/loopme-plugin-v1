@@ -136,6 +136,7 @@
 		A8BBD64C2C9FC72F5ADCB041 /* AU */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoopMe_Plugin_V1.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95DDCD0395242022D1784AB /* include_juce_audio_utils.mm */ /* include_juce_audio_utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_utils.mm; path = ../../JuceLibraryCode/include_juce_audio_utils.mm; sourceTree = SOURCE_ROOT; };
 		B0BD9DBD37910A71A90A2DEC /* include_juce_audio_formats.mm */ /* include_juce_audio_formats.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_formats.mm; path = ../../JuceLibraryCode/include_juce_audio_formats.mm; sourceTree = SOURCE_ROOT; };
+		B2D5C96D43F7D0CA47EEC5C9 /* play_button_100.png */ /* play_button_100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play_button_100.png; path = ../../../PluginResources/play_button_100.png; sourceTree = SOURCE_ROOT; };
 		B5DABDFF394B84B7CD214EB3 /* Info-Standalone_Plugin.plist */ /* Info-Standalone_Plugin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = SOURCE_ROOT; };
 		B877DC1EC9AFE159CDA74C7C /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/Dev/JUCE/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
 		BB00A1FA8868D69D38AD7046 /* include_juce_audio_plugin_client_Standalone.cpp */ /* include_juce_audio_plugin_client_Standalone.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_Standalone.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp; sourceTree = SOURCE_ROOT; };
@@ -253,6 +254,7 @@
 		26594E75F0F61025D8179500 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B2D5C96D43F7D0CA47EEC5C9,
 				4FE6CF7C800A67B997C234C2,
 			);
 			name = Resources;

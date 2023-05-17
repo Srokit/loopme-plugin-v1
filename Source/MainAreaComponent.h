@@ -31,13 +31,18 @@ public:
     void paint(juce::Graphics&) override;
 
 private:
+
+    void initButtons();
     
     LoopInfoAreaComponent _loopInfoAreaComponent;
     WaveformVisualizerComponent _waveformVisComponent;
     
     static constexpr int kLoopInfoAreaHeight = 125;
     static constexpr int kWaveformCompHeight = 250;
+    static constexpr int kPlayButtonWidth = 100;
+    static constexpr int kPlayButtonHeight = 100;
     
+    juce::ImageButton _playButton;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainAreaComponent)
 };
