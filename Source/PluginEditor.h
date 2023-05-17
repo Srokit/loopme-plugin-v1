@@ -11,13 +11,16 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
+#include "AppState.h"
+
 #include "MainAreaComponent.h"
 
 //==============================================================================
 /**
 */
 class LoopMe_Plugin_V1AudioProcessorEditor  : public juce::AudioProcessorEditor,
-                                              public juce::Value::Listener
+                                              public juce::Value::Listener,
+                                              public lm::data::INextLoopCallback
 {
 public:
     LoopMe_Plugin_V1AudioProcessorEditor (LoopMe_Plugin_V1AudioProcessor&);
@@ -28,6 +31,8 @@ public:
     void resized() override;
 
     void valueChanged(juce::Value& value) override;
+
+    void nextLoop() override;
 
 private:
 

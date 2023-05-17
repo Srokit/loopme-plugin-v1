@@ -16,4 +16,8 @@ namespace lm::data::actions {
     void toggleIsPlaying() {
         AppState::get().setIsPlaying(!AppState::get().isPlaying());
     }
+
+    void nextLoop() {
+        AppState::get().nextLoop();
+    }
 }

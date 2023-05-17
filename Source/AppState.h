@@ -10,9 +10,16 @@
 
 #pragma once
 
+#include <memory>
+
 #include <JuceHeader.h>
 
 namespace lm::data {
+
+class INextLoopCallback {
+public:
+    virtual void nextLoop() = 0;
+};
 
 class AppState {
 public:
@@ -28,7 +35,19 @@ public:
     void addListenerIsPlaying(juce::Value::Listener *listener) {
         this->_isPlaying.addListener(listener);
     }
+
+    void addListenerNextLoop(INextLoopCallback *cb) {
+        _nextLoopCb = cb;
+    }
+
+    void nextLoop() {
+        if (_nextLoopCb != nullptr) {
+            _nextLoopCb->nextLoop();
+        }
+    }
+
 private:
+    INextLoopCallback* _nextLoopCb = nullptr;
     juce::Value _isPlaying;
 };
 

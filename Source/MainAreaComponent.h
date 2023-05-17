@@ -15,6 +15,7 @@
 #include <JuceHeader.h>
 
 #include "actions.h"
+#include "AppState.h"
 #include "LoopInfoAreaComponent.h"
 #include "WaveformVisualizerComponent.h"
 
@@ -38,6 +39,8 @@ public:
     void buttonClicked(juce::Button* button) override {
         if (button == &this->_playButton) {
             data::actions::toggleIsPlaying();
+        } else if (button == &this->_nextButton) {
+            data::actions::nextLoop();
         }
     }
 
@@ -60,8 +63,12 @@ private:
     static constexpr int kWaveformCompHeight = 250;
     static constexpr int kPlayButtonWidth = 100;
     static constexpr int kPlayButtonHeight = 100;
+    static constexpr int kNextButtonWidth = 110;
+    static constexpr int kNextButtonHeight = 60;
+    static constexpr int kNextButtonY = 400;
     
     juce::ImageButton _playButton;
+    juce::TextButton _nextButton;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainAreaComponent)
 };

@@ -23,6 +23,7 @@ LoopMe_Plugin_V1AudioProcessorEditor::LoopMe_Plugin_V1AudioProcessorEditor (Loop
     addAndMakeVisible(this->_mainAreaComponent);
 
     lm::data::AppState::get().addListenerIsPlaying(this);
+    lm::data::AppState::get().addListenerNextLoop(this);
 }
 
 LoopMe_Plugin_V1AudioProcessorEditor::~LoopMe_Plugin_V1AudioProcessorEditor()
@@ -44,4 +45,9 @@ void LoopMe_Plugin_V1AudioProcessorEditor::resized()
 void LoopMe_Plugin_V1AudioProcessorEditor::valueChanged(juce::Value&)
 {
     this->audioProcessor.setIsPlaying(lm::data::AppState::get().isPlaying());
+}
+
+void LoopMe_Plugin_V1AudioProcessorEditor::nextLoop()
+{
+    this->audioProcessor.nextLoop();
 }

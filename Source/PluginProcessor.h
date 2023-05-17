@@ -62,8 +62,11 @@ public:
         _isPlaying = isPlaying;
     }
 
+    void nextLoop();
+
 private:
     bool _isPlaying = true;
+    double _sampleRate = 0.0;
 
     lm::data::LoopAudioDataMgr _loopAudioDataMgr;
     //==============================================================================

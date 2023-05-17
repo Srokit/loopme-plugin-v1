@@ -9,6 +9,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include <chrono>
+#include <thread>
+
 #include "requests.h"
 
 //==============================================================================
@@ -95,14 +98,8 @@ void LoopMe_Plugin_V1AudioProcessor::changeProgramName (int index, const juce::S
 //==============================================================================
 void LoopMe_Plugin_V1AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    std::string url = lm::data::getLoopInfoFromBackend();
-    lm::data::curlLoopFromUrl(url);
-
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
-    _loopAudioDataMgr.loadFileFromDisk("/Users/srok/audio.mp3");
-    _loopAudioDataMgr.resampleBuffer(sampleRate);
-    _loopAudioDataMgr.resetIndex();
+    this->_sampleRate = sampleRate;
+    nextLoop();
 }
 
 void LoopMe_Plugin_V1AudioProcessor::releaseResources()
@@ -187,6 +184,17 @@ void LoopMe_Plugin_V1AudioProcessor::setStateInformation (const void* data, int 
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+void LoopMe_Plugin_V1AudioProcessor::nextLoop() {
+    std::string url = lm::data::getLoopInfoFromBackend();
+    lm::data::curlLoopFromUrl(url);
+    
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+    _loopAudioDataMgr.loadFileFromDisk("/Users/srok/audio.mp3");
+    _loopAudioDataMgr.resampleBuffer(this->_sampleRate);
+    _loopAudioDataMgr.resetIndex();
 }
 
 //==============================================================================
