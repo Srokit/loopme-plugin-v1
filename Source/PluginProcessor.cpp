@@ -9,6 +9,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "requests.h"
+
 //==============================================================================
 LoopMe_Plugin_V1AudioProcessor::LoopMe_Plugin_V1AudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -93,9 +95,12 @@ void LoopMe_Plugin_V1AudioProcessor::changeProgramName (int index, const juce::S
 //==============================================================================
 void LoopMe_Plugin_V1AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    std::string url = lm::data::getLoopInfoFromBackend();
+    lm::data::curlLoopFromUrl(url);
+
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    _loopAudioDataMgr.loadFileFromDisk("/Users/srok/audio.wav");
+    _loopAudioDataMgr.loadFileFromDisk("/Users/srok/audio.mp3");
     _loopAudioDataMgr.resampleBuffer(sampleRate);
     _loopAudioDataMgr.resetIndex();
 }

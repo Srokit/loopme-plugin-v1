@@ -18,9 +18,13 @@
         </GROUP>
         <FILE id="j8DFX6" name="configvals.h" compile="0" resource="0" file="Source/configvals.h"/>
         <GROUP id="{4AF9CC24-D247-4884-11BE-3DE3F7409D47}" name="data">
+          <FILE id="toKlW8" name="json.h" compile="0" resource="0" file="Source/json.h"/>
+          <FILE id="DX6QMv" name="httplib.h" compile="0" resource="0" file="Source/httplib.h"/>
           <FILE id="ymPgZl" name="actions.cpp" compile="1" resource="0" file="Source/actions.cpp"/>
           <FILE id="uofTvD" name="actions.h" compile="0" resource="0" file="Source/actions.h"/>
           <FILE id="xS7l9Z" name="AppState.h" compile="0" resource="0" file="Source/AppState.h"/>
+          <FILE id="xI96lw" name="requests.cpp" compile="1" resource="0" file="Source/requests.cpp"/>
+          <FILE id="Cth2va" name="requests.h" compile="0" resource="0" file="Source/requests.h"/>
           <FILE id="vtWYpU" name="LoopAudioDataMgr.cpp" compile="1" resource="0"
                 file="Source/LoopAudioDataMgr.cpp"/>
           <FILE id="nr5azP" name="LoopAudioDataMgr.h" compile="0" resource="0"
