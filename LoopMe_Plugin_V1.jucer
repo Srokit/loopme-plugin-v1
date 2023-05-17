@@ -18,6 +18,9 @@
         </GROUP>
         <FILE id="j8DFX6" name="configvals.h" compile="0" resource="0" file="Source/configvals.h"/>
         <GROUP id="{4AF9CC24-D247-4884-11BE-3DE3F7409D47}" name="data">
+          <FILE id="ymPgZl" name="actions.cpp" compile="1" resource="0" file="Source/actions.cpp"/>
+          <FILE id="uofTvD" name="actions.h" compile="0" resource="0" file="Source/actions.h"/>
+          <FILE id="xS7l9Z" name="AppState.h" compile="0" resource="0" file="Source/AppState.h"/>
           <FILE id="lJgDjF" name="LoopInfo.h" compile="0" resource="0" file="Source/LoopInfo.h"/>
         </GROUP>
         <GROUP id="{5C1A3B29-6E29-BB3C-BE69-19867B56ACD7}" name="ui">
@@ -52,6 +55,8 @@
       <FILE id="s0XtNx" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
     <GROUP id="{77E16481-4184-6B24-0442-6801F4EE0B29}" name="Resources">
+      <FILE id="hUjxsg" name="pause_button_100.png" compile="0" resource="1"
+            file="../PluginResources/pause_button_100.png"/>
       <FILE id="qkqYHn" name="play_button_100.png" compile="0" resource="1"
             file="../PluginResources/play_button_100.png"/>
       <FILE id="d3yjQ4" name="plugin_bg.png" compile="0" resource="1" file="Resources/plugin_bg.png"/>

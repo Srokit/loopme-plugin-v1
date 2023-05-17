@@ -15,15 +15,19 @@
 
 #include <JuceHeader.h>
 
+#include "AppState.h"
 #include "WaveformVisualizerAggregate.h"
 
 namespace lm::ui {
 
-class WaveformVisualizerComponent : public juce::AnimatedAppComponent {
+class WaveformVisualizerComponent : public juce::AnimatedAppComponent,
+                                    public juce::Value::Listener {
 public:
     WaveformVisualizerComponent();
     void paint(juce::Graphics&) override;
     void update() override;
+
+    void valueChanged(juce::Value&) override;
 private:
     /*
      * Configure these constants to change compoenent

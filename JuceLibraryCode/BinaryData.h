@@ -8,6 +8,9 @@
 
 namespace BinaryData
 {
+    extern const char*   pause_button_100_png;
+    const int            pause_button_100_pngSize = 5343;
+
     extern const char*   play_button_100_png;
     const int            play_button_100_pngSize = 7781;
 
@@ -15,7 +18,7 @@ namespace BinaryData
     const int            plugin_bg_pngSize = 462427;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 2;
+    const int namedResourceListSize = 3;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

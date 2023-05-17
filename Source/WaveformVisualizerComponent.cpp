@@ -19,6 +19,7 @@ WaveformVisualizerComponent::WaveformVisualizerComponent() {
     setColors();
     initWfVisualizer();
     setFramesPerSecond(kFPS);
+    data::AppState::get().addListenerIsPlaying(this);
 }
 
 void WaveformVisualizerComponent::paint(juce::Graphics& g) {
@@ -29,6 +30,15 @@ void WaveformVisualizerComponent::paint(juce::Graphics& g) {
 void WaveformVisualizerComponent::update() {
     _visualizerAggregate.update();
     repaint();
+}
+
+void WaveformVisualizerComponent::valueChanged(juce::Value&) {
+    if (data::AppState::get().isPlaying()) {
+        _visualizerAggregate.resume();
+    }
+    else {
+        _visualizerAggregate.pause();
+    }
 }
 
 void WaveformVisualizerComponent::setColors() {
