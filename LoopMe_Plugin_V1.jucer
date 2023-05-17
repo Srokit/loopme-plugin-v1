@@ -21,6 +21,10 @@
           <FILE id="ymPgZl" name="actions.cpp" compile="1" resource="0" file="Source/actions.cpp"/>
           <FILE id="uofTvD" name="actions.h" compile="0" resource="0" file="Source/actions.h"/>
           <FILE id="xS7l9Z" name="AppState.h" compile="0" resource="0" file="Source/AppState.h"/>
+          <FILE id="vtWYpU" name="LoopAudioDataMgr.cpp" compile="1" resource="0"
+                file="Source/LoopAudioDataMgr.cpp"/>
+          <FILE id="nr5azP" name="LoopAudioDataMgr.h" compile="0" resource="0"
+                file="Source/LoopAudioDataMgr.h"/>
           <FILE id="lJgDjF" name="LoopInfo.h" compile="0" resource="0" file="Source/LoopInfo.h"/>
         </GROUP>
         <GROUP id="{5C1A3B29-6E29-BB3C-BE69-19867B56ACD7}" name="ui">

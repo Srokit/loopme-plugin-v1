@@ -44,8 +44,8 @@ void MainAreaComponent::valueChanged(juce::Value&) {
 }
 
 void MainAreaComponent::initImages() {
-    _playingImg = std::make_unique<juce::Image>(juce::ImageCache::getFromMemory(BinaryData::play_button_100_png, BinaryData::play_button_100_pngSize));
-    _pausedImg = std::make_unique<juce::Image>(juce::ImageCache::getFromMemory(BinaryData::pause_button_100_png, BinaryData::pause_button_100_pngSize));
+    _playingImg = std::make_unique<juce::Image>(juce::ImageCache::getFromMemory(BinaryData::pause_button_100_png, BinaryData::pause_button_100_pngSize));
+    _pausedImg = std::make_unique<juce::Image>(juce::ImageCache::getFromMemory(BinaryData::play_button_100_png, BinaryData::play_button_100_pngSize));
 }
 
 void MainAreaComponent::initButtons() {

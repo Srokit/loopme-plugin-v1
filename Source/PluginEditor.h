@@ -16,7 +16,8 @@
 //==============================================================================
 /**
 */
-class LoopMe_Plugin_V1AudioProcessorEditor  : public juce::AudioProcessorEditor
+class LoopMe_Plugin_V1AudioProcessorEditor  : public juce::AudioProcessorEditor,
+                                              public juce::Value::Listener
 {
 public:
     LoopMe_Plugin_V1AudioProcessorEditor (LoopMe_Plugin_V1AudioProcessor&);
@@ -25,6 +26,8 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+
+    void valueChanged(juce::Value& value) override;
 
 private:
 

@@ -9,6 +9,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "AppState.h"
 #include "configvals.h"
 
 //==============================================================================
@@ -20,6 +21,8 @@ LoopMe_Plugin_V1AudioProcessorEditor::LoopMe_Plugin_V1AudioProcessorEditor (Loop
     setSize (lm::config::kPluginWidth, lm::config::kPluginHeight);
     
     addAndMakeVisible(this->_mainAreaComponent);
+
+    lm::data::AppState::get().addListenerIsPlaying(this);
 }
 
 LoopMe_Plugin_V1AudioProcessorEditor::~LoopMe_Plugin_V1AudioProcessorEditor()
@@ -36,4 +39,9 @@ void LoopMe_Plugin_V1AudioProcessorEditor::resized()
 {
     const auto& b = getBounds();
     this->_mainAreaComponent.setBounds(b.getX() + lm::config::kMarginSize, b.getY() + lm::config::kMarginSize, b.getWidth() - lm::config::kMarginSize * 2, b.getHeight() - lm::config::kMarginSize * 2);
+}
+
+void LoopMe_Plugin_V1AudioProcessorEditor::valueChanged(juce::Value&)
+{
+    this->audioProcessor.setIsPlaying(lm::data::AppState::get().isPlaying());
 }

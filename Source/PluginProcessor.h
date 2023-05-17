@@ -10,6 +10,8 @@
 
 #include <JuceHeader.h>
 
+#include "LoopAudioDataMgr.h"
+
 //==============================================================================
 /**
 */
@@ -56,7 +58,14 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    void setIsPlaying(bool isPlaying) {
+        _isPlaying = isPlaying;
+    }
+
 private:
+    bool _isPlaying = true;
+
+    lm::data::LoopAudioDataMgr _loopAudioDataMgr;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LoopMe_Plugin_V1AudioProcessor)
 };
