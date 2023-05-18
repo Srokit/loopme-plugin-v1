@@ -16,8 +16,13 @@ namespace lm::data {
 
 class LoopAudioDataMgr {
 public:
-    void loadFileFromDisk(juce::String filePath);
-    void resampleBuffer(double sampleRate);
+    static LoopAudioDataMgr &get() {
+        static LoopAudioDataMgr instance;
+        return instance;
+    }
+    void loadFileFromDisk();
+    void setHostSampleRate(double sampleRate) { _hostSampleRate = sampleRate; }
+    void resampleBuffer();
     void resetIndex();
     void incIndex();
     float getSample(int channel);
@@ -26,6 +31,8 @@ private:
     juce::AudioBuffer<float> _resampledBuffer;
 
     double _origSampleRate;
+    double _hostSampleRate;
+    double _origBpm;
 
     int _readIndex = 0;
 };

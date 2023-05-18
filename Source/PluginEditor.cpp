@@ -22,7 +22,6 @@ LoopMe_Plugin_V1AudioProcessorEditor::LoopMe_Plugin_V1AudioProcessorEditor (Loop
     
     addAndMakeVisible(this->_mainAreaComponent);
 
-    lm::data::AppState::get().addListenerIsPlaying(this);
     lm::data::AppState::get().addListenerNextLoop(this);
 }
 
@@ -42,12 +41,6 @@ void LoopMe_Plugin_V1AudioProcessorEditor::resized()
     this->_mainAreaComponent.setBounds(b.getX() + lm::config::kMarginSize, b.getY() + lm::config::kMarginSize, b.getWidth() - lm::config::kMarginSize * 2, b.getHeight() - lm::config::kMarginSize * 2);
 }
 
-void LoopMe_Plugin_V1AudioProcessorEditor::valueChanged(juce::Value&)
-{
-    this->audioProcessor.setIsPlaying(lm::data::AppState::get().isPlaying());
-}
-
-void LoopMe_Plugin_V1AudioProcessorEditor::nextLoop()
-{
-    this->audioProcessor.nextLoop();
+void LoopMe_Plugin_V1AudioProcessorEditor::nextLoop() {
+    // TODO: Change display for loop info
 }

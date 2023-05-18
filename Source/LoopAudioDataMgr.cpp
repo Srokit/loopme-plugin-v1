@@ -10,12 +10,14 @@
 
 #include "LoopAudioDataMgr.h"
 
+#include "configvals.h"
+
 namespace lm::data {
 
-void LoopAudioDataMgr::loadFileFromDisk(juce::String filePath) {
+void LoopAudioDataMgr::loadFileFromDisk() {
     juce::AudioFormatManager formatManager;
     formatManager.registerBasicFormats();
-    std::unique_ptr<juce::AudioFormatReader> reader(formatManager.createReaderFor(filePath));
+    std::unique_ptr<juce::AudioFormatReader> reader(formatManager.createReaderFor(juce::String(config::kLoopDataFilePath)));
     if (reader.get() != nullptr) {
         this->_origSRBuffer.setSize(reader->numChannels, reader->lengthInSamples);
         reader->read(&this->_origSRBuffer, 0, reader->lengthInSamples, 0, true, true);
@@ -23,10 +25,10 @@ void LoopAudioDataMgr::loadFileFromDisk(juce::String filePath) {
     }
 }
 
-void LoopAudioDataMgr::resampleBuffer(double sampleRate) {
+void LoopAudioDataMgr::resampleBuffer() {
     juce::LagrangeInterpolator lInterpL;
     juce::LagrangeInterpolator lInterpR;
-    double ratio = ((double) this->_origSampleRate) / ((double) sampleRate);
+    double ratio = ((double) this->_origSampleRate) / ((double) _hostSampleRate);
     float *inPtrL = this->_origSRBuffer.getWritePointer(0);
     float *inPtrR = this->_origSRBuffer.getWritePointer(1);
     int outNumSamples = (int) (((float)this->_origSRBuffer.getNumSamples()) / ((float)ratio));

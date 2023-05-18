@@ -16,4 +16,6 @@ void toggleIsPlaying();
 
 void nextLoop();
 
+void updateHostSampleRate(double);
+
 } // namespace lm::data::actions

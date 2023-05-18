@@ -21,5 +21,7 @@ constexpr int kPluginWidth = 800;
 constexpr int kPluginHeight = 600;
 
 const std::string kBackendUrlBase = "http://loopme-backend.herokuapp.com/";
+const std::string kLoopInfoJsonFilePath = "/Users/srok/loop_info.json";
+const std::string kLoopDataFilePath = "/Users/srok/loop_data.mp3";
 
 } // namespace lm::config

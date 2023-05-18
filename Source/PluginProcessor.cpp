@@ -12,7 +12,9 @@
 #include <chrono>
 #include <thread>
 
-#include "requests.h"
+#include "actions.h"
+#include "AppState.h"
+#include "LoopAudioDataMgr.h"
 
 //==============================================================================
 LoopMe_Plugin_V1AudioProcessor::LoopMe_Plugin_V1AudioProcessor()
@@ -27,6 +29,7 @@ LoopMe_Plugin_V1AudioProcessor::LoopMe_Plugin_V1AudioProcessor()
                        )
 #endif
 {
+    lm::data::AppState::get().addListenerIsPlaying(this);
 }
 
 LoopMe_Plugin_V1AudioProcessor::~LoopMe_Plugin_V1AudioProcessor()
@@ -98,8 +101,10 @@ void LoopMe_Plugin_V1AudioProcessor::changeProgramName (int index, const juce::S
 //==============================================================================
 void LoopMe_Plugin_V1AudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    this->_sampleRate = sampleRate;
-    nextLoop();
+    if (!lm::data::AppState::get().hasGottenFirstLoop()) {
+        lm::data::actions::nextLoop();
+    }
+    lm::data::actions::updateHostSampleRate(sampleRate);
 }
 
 void LoopMe_Plugin_V1AudioProcessor::releaseResources()
@@ -155,9 +160,9 @@ void LoopMe_Plugin_V1AudioProcessor::processBlock (juce::AudioBuffer<float>& buf
         for (int channel = 0; channel < totalNumOutputChannels; ++channel)
         {
             auto* channelData = buffer.getWritePointer (channel);
-            channelData[sample] = _loopAudioDataMgr.getSample(channel);
+            channelData[sample] = lm::data::LoopAudioDataMgr::get().getSample(channel);
         }
-        _loopAudioDataMgr.incIndex();
+        lm::data::LoopAudioDataMgr::get().incIndex();
     }
 }
 
@@ -186,15 +191,9 @@ void LoopMe_Plugin_V1AudioProcessor::setStateInformation (const void* data, int 
     // whose contents will have been created by the getStateInformation() call.
 }
 
-void LoopMe_Plugin_V1AudioProcessor::nextLoop() {
-    std::string url = lm::data::getLoopInfoFromBackend();
-    lm::data::curlLoopFromUrl(url);
-    
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-
-    _loopAudioDataMgr.loadFileFromDisk("/Users/srok/audio.mp3");
-    _loopAudioDataMgr.resampleBuffer(this->_sampleRate);
-    _loopAudioDataMgr.resetIndex();
+void LoopMe_Plugin_V1AudioProcessor::valueChanged(juce::Value&) {
+    // isPlaying value changed
+    _isPlaying = lm::data::AppState::get().isPlaying();
 }
 
 //==============================================================================

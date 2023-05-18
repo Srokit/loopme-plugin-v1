@@ -19,7 +19,6 @@
 /**
 */
 class LoopMe_Plugin_V1AudioProcessorEditor  : public juce::AudioProcessorEditor,
-                                              public juce::Value::Listener,
                                               public lm::data::INextLoopCallback
 {
 public:
@@ -29,8 +28,6 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
-
-    void valueChanged(juce::Value& value) override;
 
     void nextLoop() override;
 

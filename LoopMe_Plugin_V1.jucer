@@ -18,6 +18,10 @@
         </GROUP>
         <FILE id="j8DFX6" name="configvals.h" compile="0" resource="0" file="Source/configvals.h"/>
         <GROUP id="{4AF9CC24-D247-4884-11BE-3DE3F7409D47}" name="data">
+          <FILE id="tyIpK2" name="DataDownloader.cpp" compile="1" resource="0"
+                file="Source/DataDownloader.cpp"/>
+          <FILE id="n37taS" name="DataDownloader.h" compile="0" resource="0"
+                file="Source/DataDownloader.h"/>
           <FILE id="toKlW8" name="json.h" compile="0" resource="0" file="Source/json.h"/>
           <FILE id="DX6QMv" name="httplib.h" compile="0" resource="0" file="Source/httplib.h"/>
           <FILE id="ymPgZl" name="actions.cpp" compile="1" resource="0" file="Source/actions.cpp"/>

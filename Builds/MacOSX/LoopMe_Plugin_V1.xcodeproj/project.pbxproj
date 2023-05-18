@@ -27,6 +27,7 @@
 		00E35A9B854A9A56089378E4 /* RecentFilesMenuTemplate.nib */ = {isa = PBXBuildFile; fileRef = 41DB18749FEC3DFBB23BB3E5; };
 		086E231E5769D003F0434B42 /* requests.cpp */ = {isa = PBXBuildFile; fileRef = 2D3D69405A85C1ABEC122E1E; };
 		1114892A4C5207D1C3D79992 /* WebKit.framework */ = {isa = PBXBuildFile; fileRef = 3B0CB08C57048EA955288098; };
+		14476919C8B91AE1FE3E6E28 /* DataDownloader.cpp */ = {isa = PBXBuildFile; fileRef = 142F1CCE3A2191D7EB108DA2; };
 		1B5936F714DF1E48D8E09689 /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = 86DF82555EF40D026EA3FF4C; };
 		22E4612622B6DBDC5AB88B0E /* include_juce_gui_extra.mm */ = {isa = PBXBuildFile; fileRef = 8152BE2100C4AC6A4B9D9C80; };
 		28B52150AD7BA8B728A8D4DE /* actions.cpp */ = {isa = PBXBuildFile; fileRef = 520FAC03AC1662A350147494; };
@@ -81,6 +82,7 @@
 		08EF7A0846A1F7392273F843 /* include_juce_audio_processors_ara.cpp */ /* include_juce_audio_processors_ara.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_processors_ara.cpp; path = ../../JuceLibraryCode/include_juce_audio_processors_ara.cpp; sourceTree = SOURCE_ROOT; };
 		0A9E545B65617EA849D8D834 /* WaveformVisualizer.cpp */ /* WaveformVisualizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = WaveformVisualizer.cpp; path = ../../Source/WaveformVisualizer.cpp; sourceTree = SOURCE_ROOT; };
 		0DC631D2785E65F83F6B6F97 /* configvals.h */ /* configvals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = configvals.h; path = ../../Source/configvals.h; sourceTree = SOURCE_ROOT; };
+		142F1CCE3A2191D7EB108DA2 /* DataDownloader.cpp */ /* DataDownloader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DataDownloader.cpp; path = ../../Source/DataDownloader.cpp; sourceTree = SOURCE_ROOT; };
 		18D895CD720F3609872B1681 /* include_juce_audio_plugin_client_utils.cpp */ /* include_juce_audio_plugin_client_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_utils.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp; sourceTree = SOURCE_ROOT; };
 		19C312267956FB59D820A216 /* json.h */ /* json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../../Source/json.h; sourceTree = SOURCE_ROOT; };
 		1DF7FD4948534E0220F33EDF /* include_juce_gui_basics.mm */ /* include_juce_gui_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_gui_basics.mm; path = ../../JuceLibraryCode/include_juce_gui_basics.mm; sourceTree = SOURCE_ROOT; };
@@ -165,6 +167,7 @@
 		F80CDDE4114F2257C6080350 /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = "~/Dev/JUCE/JUCE/modules/juce_gui_extra"; sourceTree = "<absolute>"; };
 		FCFC3650846A2A00CFAFA0AD /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = "~/Dev/JUCE/JUCE/modules/juce_events"; sourceTree = "<absolute>"; };
 		FD11FFDCCB1292AC0860FC08 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
+		FE7B61D68949C7C88DF0BFBA /* DataDownloader.h */ /* DataDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DataDownloader.h; path = ../../Source/DataDownloader.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 		4E457489C4568DDC611DBA58 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				142F1CCE3A2191D7EB108DA2,
+				FE7B61D68949C7C88DF0BFBA,
 				19C312267956FB59D820A216,
 				D63D895A77EA0728E48FECD3,
 				520FAC03AC1662A350147494,
@@ -689,6 +694,7 @@
 			files = (
 				8CFDF4E01EEE28A4E040D133,
 				CA1749E15B4D26A0BAC017B2,
+				14476919C8B91AE1FE3E6E28,
 				28B52150AD7BA8B728A8D4DE,
 				086E231E5769D003F0434B42,
 				9D6DD626FC0DCB1C443866D3,

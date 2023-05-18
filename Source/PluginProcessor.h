@@ -10,12 +10,11 @@
 
 #include <JuceHeader.h>
 
-#include "LoopAudioDataMgr.h"
-
 //==============================================================================
 /**
 */
-class LoopMe_Plugin_V1AudioProcessor  : public juce::AudioProcessor
+class LoopMe_Plugin_V1AudioProcessor  : public juce::AudioProcessor,
+                                        public juce::Value::Listener
                             #if JucePlugin_Enable_ARA
                              , public juce::AudioProcessorARAExtension
                             #endif
@@ -58,17 +57,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    void setIsPlaying(bool isPlaying) {
-        _isPlaying = isPlaying;
-    }
-
-    void nextLoop();
+    void valueChanged(juce::Value&) override;
 
 private:
     bool _isPlaying = true;
     double _sampleRate = 0.0;
-
-    lm::data::LoopAudioDataMgr _loopAudioDataMgr;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LoopMe_Plugin_V1AudioProcessor)
 };

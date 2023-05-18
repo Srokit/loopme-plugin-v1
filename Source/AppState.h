@@ -11,8 +11,11 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include <JuceHeader.h>
+
+#include "LoopInfo.h"
 
 namespace lm::data {
 
@@ -36,19 +39,30 @@ public:
         this->_isPlaying.addListener(listener);
     }
 
+    void setLoopInfo(const LoopInfo& loopInfo) {
+        _loopInfo = loopInfo;
+    }
+    const LoopInfo& loopInfo() const { return _loopInfo; }
     void addListenerNextLoop(INextLoopCallback *cb) {
-        _nextLoopCb = cb;
+        _nextLoopCbs.push_back(cb);
     }
 
     void nextLoop() {
-        if (_nextLoopCb != nullptr) {
-            _nextLoopCb->nextLoop();
+        for (auto *cb : _nextLoopCbs) {
+            cb->nextLoop();
         }
     }
 
+    void setHasGottenFirstLoop() {
+        _hasGottenFirstLoop = true;
+    }
+    bool hasGottenFirstLoop() const { return _hasGottenFirstLoop; }
+
 private:
-    INextLoopCallback* _nextLoopCb = nullptr;
+    std::vector<INextLoopCallback*> _nextLoopCbs;
     juce::Value _isPlaying;
+    bool _hasGottenFirstLoop = false;
+    LoopInfo _loopInfo;
 };
 
 } // namespace lm::data
