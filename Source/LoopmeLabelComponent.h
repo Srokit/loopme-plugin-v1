@@ -21,6 +21,8 @@ public:
     void paint(juce::Graphics&) override;
     
     juce::FlexItem makeFlexItem();
+    
+    void setText(const std::string&);
 private:
     juce::Label _label;
     std::string _text;

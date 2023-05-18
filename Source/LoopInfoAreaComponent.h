@@ -12,13 +12,15 @@
 
 #include <JuceHeader.h>
 
+#include "AppState.h"
 #include "LoopInfo.h"
 #include "LoopmeLabelComponent.h"
 #include "FlexBoxComponent.h"
 
 namespace lm::ui {
 
-class LoopInfoAreaComponent: public juce::Component {
+class LoopInfoAreaComponent: public juce::Component,
+                             public data::INextLoopCallback {
 public:
     LoopInfoAreaComponent();
 
@@ -28,6 +30,8 @@ public:
     
     // Debug
     void paint(juce::Graphics&) override;
+                                 
+    void nextLoop() override;
 
 private:
     void attachChildren();

@@ -10,14 +10,17 @@
 
 #include "LoopInfoAreaComponent.h"
 
+#include "AppState.h"
+
 namespace lm::ui {
 
 LoopInfoAreaComponent::LoopInfoAreaComponent()
-: _loopInfo(),
-  _nameLabelComponent(this->_loopInfo.name, 40, {kVertFbWidth, kLoopNameHeight}),
-  _tempoAndKeyLabelComponent(calcTempoAndKeyLabelStr(this->_loopInfo.tempo, this->_loopInfo.key), 20, {kVertFbWidth, kTempoAndKeyH})
+: _loopInfo(data::AppState::get().loopInfo()),
+_nameLabelComponent(this->_loopInfo.name, 40, {kVertFbWidth, kLoopNameHeight}),
+_tempoAndKeyLabelComponent(calcTempoAndKeyLabelStr(this->_loopInfo.tempo, this->_loopInfo.key), 20, {kVertFbWidth, kTempoAndKeyH})
 {
     attachChildren();
+    data::AppState::get().addListenerNextLoop(this);
 }
 
 void LoopInfoAreaComponent::resized() {
@@ -40,7 +43,7 @@ void LoopInfoAreaComponent::layoutChildren() {
     this->_tempoAndKeyLabelComponent.setSize(kVertFbWidth, kTempoAndKeyH);
     this->_nameLabelComponent.setSize(kVertFbWidth, kLoopNameHeight);
     this->_spacerComp.setSize(kVertFbWidth, kSpacerHeight);
-
+    
     // Set flexbox properties
     this->_containerFlexBoxComponent.setFlexDirection(juce::FlexBox::Direction::row);
     this->_containerFlexBoxComponent.setJustifyContent(juce::FlexBox::JustifyContent::flexStart);
@@ -53,6 +56,12 @@ void LoopInfoAreaComponent::layoutChildren() {
 
 void LoopInfoAreaComponent::paint(juce::Graphics& g) {
 //    g.fillAll(juce::Colours::yellow);
+}
+
+void LoopInfoAreaComponent::nextLoop() {
+    const auto& loopInfo = data::AppState::get().loopInfo();
+    this->_nameLabelComponent.setText(loopInfo.name);
+    this->_tempoAndKeyLabelComponent.setText(loopInfo.tempo + "|" + loopInfo.key);
 }
 
 } // namespace lm::ui

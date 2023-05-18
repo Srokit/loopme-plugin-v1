@@ -27,11 +27,15 @@ void LoopmeLabelComponent::resized() {
 }
 
 void LoopmeLabelComponent::paint(juce::Graphics& g) {
-//    g.fillAll(juce::Colours::red);
+    //    g.fillAll(juce::Colours::red);
 }
 
 juce::FlexItem LoopmeLabelComponent::makeFlexItem() {
     return juce::FlexItem(this->_size.getX(), this->_size.getY(), *this);
+}
+
+void LoopmeLabelComponent::setText(const std::string &newS) {
+    this->_label.setText(newS, juce::dontSendNotification);
 }
 
 } // namespace lm::ui
