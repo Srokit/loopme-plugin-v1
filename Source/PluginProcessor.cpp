@@ -105,6 +105,7 @@ void LoopMe_Plugin_V1AudioProcessor::prepareToPlay (double sampleRate, int sampl
         lm::data::actions::nextLoop();
     }
     lm::data::actions::updateHostSampleRate(sampleRate);
+    checkIfBpmChangedAndMaybeUpdate();
 }
 
 void LoopMe_Plugin_V1AudioProcessor::releaseResources()
@@ -149,6 +150,9 @@ void LoopMe_Plugin_V1AudioProcessor::processBlock (juce::AudioBuffer<float>& buf
         return;
     }
 
+    // Check if resample needs to occur due to bpm change
+    checkIfBpmChangedAndMaybeUpdate();
+
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
     // Make sure to reset the state if your inner loop is processing
@@ -156,7 +160,7 @@ void LoopMe_Plugin_V1AudioProcessor::processBlock (juce::AudioBuffer<float>& buf
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
     for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
-
+        std::unique_lock<std::mutex>&& l(lm::data::LoopAudioDataMgr::get().getScopedResamplingLock());
         for (int channel = 0; channel < totalNumOutputChannels; ++channel)
         {
             auto* channelData = buffer.getWritePointer (channel);
@@ -194,6 +198,16 @@ void LoopMe_Plugin_V1AudioProcessor::setStateInformation (const void* data, int 
 void LoopMe_Plugin_V1AudioProcessor::valueChanged(juce::Value&) {
     // isPlaying value changed
     _isPlaying = lm::data::AppState::get().isPlaying();
+}
+
+void LoopMe_Plugin_V1AudioProcessor::checkIfBpmChangedAndMaybeUpdate() {
+    if (getPlayHead() && getPlayHead()->getPosition().hasValue() && getPlayHead()->getPosition()->getBpm().hasValue()) {
+        double hostBpm = *getPlayHead()->getPosition()->getBpm();
+        if (hostBpm != _currHostBpm) {
+            _currHostBpm = hostBpm;
+            lm::data::actions::updateHostBpm(_currHostBpm);
+        }
+    }
 }
 
 //==============================================================================

@@ -18,36 +18,48 @@
 #include "LoopAudioDataMgr.h"
 
 namespace lm::data::actions {
-    void toggleIsPlaying() {
-        AppState::get().setIsPlaying(!AppState::get().isPlaying());
+
+void toggleIsPlaying() {
+    AppState::get().setIsPlaying(!AppState::get().isPlaying());
+}
+
+void nextLoop() {
+    std::string url;
+    LoopInfo loopInfo;
+    if (!DataDownloader::get().dlNextLoopInfoAndUrl(loopInfo, url)) {
+        DBG("Failed to download next loop info and url");
+        return;
+    }
+    if (!DataDownloader::get().dlNextLoopData(url)) {
+        DBG("Failed to download next loop data");
+        return;
     }
 
-    void nextLoop() {
-        std::string url;
-        LoopInfo loopInfo;
-        if (!DataDownloader::get().dlNextLoopInfoAndUrl(loopInfo, url)) {
-            DBG("Failed to download next loop info and url");
-            return;
-        }
-        if (!DataDownloader::get().dlNextLoopData(url)) {
-            DBG("Failed to download next loop data");
-            return;
-        }
+    // Give curl time to finish writing to disk
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-        // Give curl time to finish writing to disk
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    double tempoDouble = std::stod(loopInfo.tempo);
+    LoopAudioDataMgr::get().setOrigBpm(tempoDouble);
+    // If the host bpm has not been set yet then make it equal to the orig bpm
+    // so that no time warping occurs.
+    if (!LoopAudioDataMgr::get().isHostBpmSet())
+        LoopAudioDataMgr::get().setHostBpm(tempoDouble);
+    LoopAudioDataMgr::get().loadFileFromDisk();
+    LoopAudioDataMgr::get().resampleBufferAndResetIndex();
+    AppState::get().setLoopInfo(loopInfo);
+    AppState::get().setHasGottenFirstLoop();
+    AppState::get().nextLoop();
+}
 
-        LoopAudioDataMgr::get().loadFileFromDisk();
-        LoopAudioDataMgr::get().resampleBuffer();
-        LoopAudioDataMgr::get().resetIndex();
-        AppState::get().setLoopInfo(loopInfo);
-        AppState::get().nextLoop();
-        AppState::get().setHasGottenFirstLoop();
-    }
+void updateHostSampleRate(double sampleRate) {
+    LoopAudioDataMgr::get().setHostSampleRate(sampleRate);
+    LoopAudioDataMgr::get().resampleBufferAndResetIndex();
+}
 
-    void updateHostSampleRate(double sampleRate) {
-        LoopAudioDataMgr::get().setHostSampleRate(sampleRate);
-        LoopAudioDataMgr::get().resampleBuffer();
-        LoopAudioDataMgr::get().resetIndex();
-    }
+void updateHostBpm(double hostBpm) {
+    LoopAudioDataMgr::get().setHostBpm(hostBpm);
+    LoopAudioDataMgr::get().loadFileFromDisk();
+    LoopAudioDataMgr::get().resampleBufferAndResetIndex();
+}
+
 }

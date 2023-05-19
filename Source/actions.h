@@ -18,4 +18,6 @@ void nextLoop();
 
 void updateHostSampleRate(double);
 
+void updateHostBpm(double);
+
 } // namespace lm::data::actions
