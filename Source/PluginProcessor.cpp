@@ -145,17 +145,20 @@ void LoopMe_Plugin_V1AudioProcessor::processBlock (juce::AudioBuffer<float>& buf
     juce::ScopedNoDenormals noDenormals;
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    if (!this->_isPlaying) {
-        buffer.clear();
-        return;
-    }
-
     // Check if resample needs to occur due to bpm change
     checkIfBpmChangedAndMaybeUpdate();
     
     // Might need to reset which index we start pulling data from based on playhead
     
     maybeSetBufferIndexFromPlayhead();
+    
+    // Might need to trigger a play or pause based on host playing or pausing
+    maybeStartPlayingIfPlayHeadStartedPlaying();
+    
+    if (!this->_isPlaying) {
+        buffer.clear();
+        return;
+    }
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
@@ -163,8 +166,8 @@ void LoopMe_Plugin_V1AudioProcessor::processBlock (juce::AudioBuffer<float>& buf
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
+    std::unique_lock<std::mutex>&& l(lm::data::LoopAudioDataMgr::get().getScopedResamplingLock());
     for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
-        std::unique_lock<std::mutex>&& l(lm::data::LoopAudioDataMgr::get().getScopedResamplingLock());
         for (int channel = 0; channel < totalNumOutputChannels; ++channel)
         {
             auto* channelData = buffer.getWritePointer (channel);
@@ -230,6 +233,15 @@ void LoopMe_Plugin_V1AudioProcessor::maybeSetBufferIndexFromPlayhead() {
     }
     // Otherwise no need to do anything. The loop will just continuosuly loop
     // if no play head exists
+}
+
+void LoopMe_Plugin_V1AudioProcessor::maybeStartPlayingIfPlayHeadStartedPlaying() {
+    if (getPlayHead() && getPlayHead()->getPosition().hasValue()) {
+        if (getPlayHead()->getPosition()->getIsPlaying() != lastIsPlaying) {
+            lastIsPlaying = getPlayHead()->getPosition()->getIsPlaying();
+            lm::data::actions::toggleIsPlaying();
+        }
+    }
 }
 
 bool LoopMe_Plugin_V1AudioProcessor::doesBeatDifferByAlot(double beat) {

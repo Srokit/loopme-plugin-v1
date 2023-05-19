@@ -42,8 +42,8 @@ private:
     void resampleBuffer();
     void resetIndex();
     
-    // All loops from backend are 8 beats for now
-    static constexpr int NUM_BEATS_IN_LOOP = 8;
+    // All loops from backend are 8 bars for now
+    static constexpr int NUM_BEATS_IN_LOOP = 32;
     
     std::mutex _resampledBufferMut;
     

@@ -63,6 +63,8 @@ public:
     void maybeSetBufferIndexFromPlayhead();
     
     bool doesBeatDifferByAlot(double beat);
+    
+    void maybeStartPlayingIfPlayHeadStartedPlaying();
 
 private:
     bool _isPlaying = false;
@@ -71,6 +73,7 @@ private:
     double _currHostBpm = -1;
     
     double lastBeat = -1;
+    bool lastIsPlaying = false;
     
     static constexpr double SIGNIFICANT_BEAT_CHANGE = 0.5;
     //==============================================================================
