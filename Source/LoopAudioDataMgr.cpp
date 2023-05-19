@@ -65,6 +65,19 @@ float LoopAudioDataMgr::getSample(int channel) {
     return this->_resampledBuffer.getSample(channel, this->_readIndex);
 }
 
+void LoopAudioDataMgr::setSampleStartIndexByBeat(double beat) {
+    if (beat < _syncedStartBeat) {
+        // If the playhead moved behind the original sync point, restart sync here
+        syncStartBeat(beat);
+    }
+    this->_readIndex = ((int)(((beat - _syncedStartBeat) / NUM_BEATS_IN_LOOP) * _resampledBuffer.getNumSamples())) % _resampledBuffer.getNumSamples();
+}
+
+void LoopAudioDataMgr::syncStartBeat(double beat) {
+    _hasSyncedStartBeat = true;
+    _syncedStartBeat = beat;
+}
+
 void LoopAudioDataMgr::convertMp3FileToWavFile() {
     // Covert the mp3 file into a wav file using juce
     juce::File mp3File(config::kLoopDataFilePath);

@@ -28,6 +28,9 @@ public:
     void setHostSampleRate(double sampleRate) { _hostSampleRate = sampleRate; }
     void incIndex();
     float getSample(int channel);
+    void setSampleStartIndexByBeat(double beat);
+    void syncStartBeat(double beat);
+    bool hasSyncedStartBeat() const { return _hasSyncedStartBeat; }
     bool isHostBpmSet() const { return _isHostBpmSet; }
     void resampleBufferAndResetIndex();
     std::unique_lock<std::mutex>&& getScopedResamplingLock() { std::unique_lock<std::mutex> l(_resampledBufferMut); return std::move(l); }
@@ -38,6 +41,9 @@ private:
     
     void resampleBuffer();
     void resetIndex();
+    
+    // All loops from backend are 8 beats for now
+    static constexpr int NUM_BEATS_IN_LOOP = 8;
     
     std::mutex _resampledBufferMut;
     
@@ -52,6 +58,10 @@ private:
     bool _isHostBpmSet = false;
 
     int _readIndex = 0;
+    
+    double _syncedStartBeat = 0;
+    
+    bool _hasSyncedStartBeat = false;
 };
 
 } // namespace lm::data

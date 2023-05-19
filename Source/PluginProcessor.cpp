@@ -152,6 +152,10 @@ void LoopMe_Plugin_V1AudioProcessor::processBlock (juce::AudioBuffer<float>& buf
 
     // Check if resample needs to occur due to bpm change
     checkIfBpmChangedAndMaybeUpdate();
+    
+    // Might need to reset which index we start pulling data from based on playhead
+    
+    maybeSetBufferIndexFromPlayhead();
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
@@ -208,6 +212,28 @@ void LoopMe_Plugin_V1AudioProcessor::checkIfBpmChangedAndMaybeUpdate() {
             lm::data::actions::updateHostBpm(_currHostBpm);
         }
     }
+}
+
+void LoopMe_Plugin_V1AudioProcessor::maybeSetBufferIndexFromPlayhead() {
+    if (getPlayHead() && getPlayHead()->getPosition().hasValue() && getPlayHead()->getPosition()->getPpqPosition().hasValue()) {
+        double beat = *getPlayHead()->getPosition()->getPpqPosition();
+//        lm::data::LoopInfo li;
+//        li.name = std::to_string(beat);
+//        lm::data::AppState::get().setLoopInfo(li);
+//        lm::data::AppState::get().nextLoop();
+        if (!lm::data::LoopAudioDataMgr::get().hasSyncedStartBeat()) {
+            lm::data::LoopAudioDataMgr::get().syncStartBeat(beat);
+        }
+        if (doesBeatDifferByAlot(beat))
+            lm::data::LoopAudioDataMgr::get().setSampleStartIndexByBeat(beat);
+        lastBeat = beat;
+    }
+    // Otherwise no need to do anything. The loop will just continuosuly loop
+    // if no play head exists
+}
+
+bool LoopMe_Plugin_V1AudioProcessor::doesBeatDifferByAlot(double beat) {
+    return abs(beat - lastBeat) > SIGNIFICANT_BEAT_CHANGE;
 }
 
 //==============================================================================

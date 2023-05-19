@@ -60,12 +60,19 @@ public:
     void valueChanged(juce::Value&) override;
     
     void checkIfBpmChangedAndMaybeUpdate();
+    void maybeSetBufferIndexFromPlayhead();
+    
+    bool doesBeatDifferByAlot(double beat);
 
 private:
     bool _isPlaying = true;
     
     // Will check against this to see if play head bpm has changed in each process block
     double _currHostBpm = -1;
+    
+    double lastBeat = -1;
+    
+    static constexpr double SIGNIFICANT_BEAT_CHANGE = 0.5;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LoopMe_Plugin_V1AudioProcessor)
 };
