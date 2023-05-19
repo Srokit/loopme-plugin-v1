@@ -65,7 +65,7 @@ public:
     bool doesBeatDifferByAlot(double beat);
 
 private:
-    bool _isPlaying = true;
+    bool _isPlaying = false;
     
     // Will check against this to see if play head bpm has changed in each process block
     double _currHostBpm = -1;

@@ -51,7 +51,6 @@ void WaveformVisualizerComponent::initWfVisualizer() {
     for (const auto& att : kWfAtts) {
         _visualizerAggregate.addVisualizerWithAttributes(att);
     }
-    _visualizerAggregate.resume();
 }
 
 void WaveformVisualizerComponent::drawWfRects(juce::Graphics& g) {

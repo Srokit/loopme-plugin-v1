@@ -51,8 +51,8 @@ void MainAreaComponent::initImages() {
 
 void MainAreaComponent::initButtons() {
     this->_playButton.setImages(true, true, true,
-                                *_playingImg, 1.0f, juce::Colours::transparentBlack, *_playingImg, 1.0f,
-                                juce::Colours::transparentBlack, *_playingImg,
+                                *_pausedImg, 1.0f, juce::Colours::transparentBlack, *_pausedImg, 1.0f,
+                                juce::Colours::transparentBlack, *_pausedImg,
                                 1.0f, juce::Colours::transparentBlack);
     this->_playButton.addListener(this);
     data::AppState::get().addListenerIsPlaying(this);

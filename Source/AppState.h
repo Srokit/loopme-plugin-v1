@@ -30,7 +30,7 @@ public:
         static AppState instance;
         return instance;
     }
-    AppState() : _isPlaying(true) {}
+    AppState() : _isPlaying(false) {}
     void setIsPlaying(bool isPlaying) {
         this->_isPlaying = isPlaying;
     }
